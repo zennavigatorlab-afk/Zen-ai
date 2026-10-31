@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">ZEN AI</string>
+    <string name="dashboard_title">ZEN AI</string>
+    <string name="dashboard_subtitle">Personal Intelligence System</string>
+    
+    <!-- Navigation & Sections -->
+    <string name="nav_ai_assistant">AI Assistant</string>
+    <string name="nav_personal_memory">Personal Memory</string>
+    <string name="nav_conversations">Conversations</string>
+    <string name="nav_file_manager">File Manager</string>
+    <string name="nav_knowledge_library">Knowledge Library</string>
+    <string name="nav_phone_actions">Phone Actions</string>
+    <string name="nav_drive_vault">Google Drive Vault</string>
+    <string name="nav_backup_recovery">Backup &amp; Recovery</string>
+    <string name="nav_settings">Settings</string>
+    
+    <!-- Status Labels -->
+    <string name="status_local_storage">Local Storage</string>
+    <string name="status_cloud_connection">Cloud Status</string>
+    <string name="status_backup">Backup Status</string>
+    <string name="status_network">Network</string>
+    <string name="status_memory_db">Memory DB</string>
+    <string name="status_not_connected">Not connected</string>
+    <string name="status_connected">Connected</string>
+    <string name="status_online">Online</string>
+    <string name="status_offline">Offline</string>
+    
+    <!-- Action buttons -->
+    <string name="action_add">Add</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_search">Search</string>
+    <string name="action_export">Export</string>
+    <string name="action_import">Import</string>
+    <string name="action_backup_now">Run Backup Now</string>
+    <string name="action_restore">Restore</string>
+</resources>

@@ -1,0 +1,55 @@
+{
+  "name": "ZEN AI – Personal Intelligence System",
+  "short_name": "ZEN AI",
+  "description": "Personal Intelligence System with offline memory, encrypted vault foundation, and local document indexing.",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#0B0F17",
+  "background_color": "#0B0F17",
+  "categories": ["productivity", "utilities", "security"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Assistant",
+      "short_name": "Assistant",
+      "description": "Launch offline local intelligence chat",
+      "url": "./#section=assistant",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Personal Memory",
+      "short_name": "Memory",
+      "description": "Access encrypted notes and preferences",
+      "url": "./#section=memory",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "File Manager",
+      "short_name": "Files",
+      "description": "Browse and index local files",
+      "url": "./#section=files",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

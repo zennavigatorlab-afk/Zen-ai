@@ -1,0 +1,21 @@
+{
+  "name": "zen-ai-pwa",
+  "version": "1.0.0",
+  "description": "ZEN AI – Personal Intelligence System Progressive Web App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'PWA assets ready'",
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "pwa",
+    "offline-first",
+    "privacy",
+    "personal-intelligence",
+    "encrypted-vault"
+  ],
+  "author": "ZEN AI",
+  "license": "Apache-2.0"
+}

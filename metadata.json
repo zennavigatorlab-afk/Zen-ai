@@ -1,0 +1,8 @@
+{
+  "name": "ZEN AI",
+  "description": "Personal Intelligence System - modular offline architecture with encrypted memory, file indexing, and security foundation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

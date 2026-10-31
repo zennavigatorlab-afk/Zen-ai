@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ZEN AI – Personal Intelligence System</title>
+  
+  <!-- PWA Manifest & Meta -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0B0F17">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ZEN AI">
+  
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="top-bar">
+    <div class="brand-row">
+      <button class="icon-btn" id="btn-nav-back" style="display:none;" title="Back to Dashboard">←</button>
+      <img src="icons/icon-192.png" alt="ZEN AI Logo" class="brand-icon">
+      <div>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span class="brand-title" id="top-brand-title">ZEN AI</span>
+          <span class="badge badge-offline">Offline Secure</span>
+        </div>
+        <div class="brand-subtitle">Personal Intelligence System</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:4px;">
+      <button class="icon-btn" id="btn-toggle-theme" title="Toggle Light/Dark Theme">🌓</button>
+      <button class="icon-btn" id="btn-refresh-telemetry" title="Refresh Telemetry">🔄</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main id="app-container">
+
+    <!-- In-App PWA Install Banner -->
+    <div id="install-banner">
+      <div>
+        <div style="font-weight:700; font-size:0.95rem;">Install ZEN AI App</div>
+        <div style="font-size:0.75rem; color:var(--text-secondary-dark); margin-top:2px;">
+          Install to your home screen for quick offline access and full standalone experience.
+        </div>
+      </div>
+      <button class="btn" id="btn-install-pwa">Install</button>
+    </div>
+
+    <!-- Network Offline Banner -->
+    <div id="network-banner"></div>
+
+    <!-- SECTION 1: DASHBOARD -->
+    <section id="section-dashboard" class="section-view active">
+      <div style="font-size:0.75rem; font-weight:700; letter-spacing:1px; color:var(--text-secondary-dark); margin-top:8px;">
+        SYSTEM TELEMETRY
+      </div>
+
+      <!-- Telemetry Cards -->
+      <div class="telemetry-grid">
+        <div class="telemetry-card">
+          <div class="telemetry-card-header">
+            <span>Local Storage</span>
+            <span class="status-dot dot-cyan"></span>
+          </div>
+          <div class="telemetry-value" id="telemetry-storage-val">Persistent</div>
+          <div class="telemetry-sub" id="telemetry-storage-sub">IndexedDB Quota</div>
+        </div>
+
+        <div class="telemetry-card">
+          <div class="telemetry-card-header">
+            <span>Memory DB</span>
+            <span class="status-dot dot-green"></span>
+          </div>
+          <div class="telemetry-value" id="telemetry-db-val">0 Records</div>
+          <div class="telemetry-sub" id="telemetry-db-sub">0 docs • 0 chats</div>
+        </div>
+
+        <div class="telemetry-card">
+          <div class="telemetry-card-header">
+            <span>Cloud Vault</span>
+            <span class="status-dot dot-gray"></span>
+          </div>
+          <div class="telemetry-value">Not connected</div>
+          <div class="telemetry-sub">Google Drive (drive.file)</div>
+        </div>
+
+        <div class="telemetry-card">
+          <div class="telemetry-card-header">
+            <span>Network</span>
+            <span class="status-dot dot-green"></span>
+          </div>
+          <div class="telemetry-value" id="telemetry-network-val">Online</div>
+          <div class="telemetry-sub" id="telemetry-network-sub">Connected</div>
+        </div>
+      </div>
+
+      <!-- Backup Status Bar -->
+      <div class="card" style="padding:12px 16px; margin-bottom:16px; display:flex; align-items:center; gap:8px;">
+        <span class="status-dot dot-green"></span>
+        <span style="font-size:0.85rem; font-weight:600;">Backup Status:</span>
+        <span style="font-size:0.85rem; color:var(--text-secondary-dark);" id="telemetry-backup-text">Checking status...</span>
+      </div>
+
+      <!-- 9 Core Modules Grid -->
+      <div style="font-size:0.75rem; font-weight:700; letter-spacing:1px; color:var(--text-secondary-dark); margin:16px 0 8px 0;">
+        CORE MODULES
+      </div>
+
+      <div class="modules-grid">
+        <div class="card card-clickable" data-nav-target="assistant">
+          <div class="card-icon">🤖</div>
+          <div class="card-title">AI Assistant</div>
+          <div class="card-desc">Offline local intelligence chat & intent recall</div>
+        </div>
+
+        <div class="card card-clickable" data-nav-target="memory">
+          <div class="card-icon">🧠</div>
+          <div class="card-title">Personal Memory</div>
+          <div class="card-desc">Encrypted notes, preferences & export/import</div>
+        </div>
+
+        <div class="card card-clickable" data-nav-target="conversations">
+          <div class="card-icon">💬</div>
+          <div class="card-title">Conversations</div>
+          <div class="card-desc">Local chat sessions & indexed messages</div>
+        </div>
+
+        <div class="card card-clickable" data-nav-target="files">
+          <div class="card-icon">📁</div>
+          <div class="card-title">File Manager</div>
+          <div class="card-desc">Web File System Access & document indexing</div>
+        </div>
+
+        <div class="card card-clickable" data-nav-target="knowledge">
+          <div class="card-icon">📚</div>
+          <div class="card-title">Knowledge Library</div>
+          <div class="card-desc">Extracted document snippets & offline search</div>
+        </div>
+
+        <div class="card card-clickable" data-nav-target="phone">
+          <div class="card-icon">📱</div>
+          <div class="card-title">Phone & Web Actions</div>
+          <div class="card-desc">Device battery, memory, storage & share utilities</div>
+        </div>
+
+        <div class="card card-clickable" data-nav-target="vault">
+          <div class="card-icon">☁️</div>
+          <div class="card-title">Google Drive Vault</div>
+          <div class="card-desc">Cloud sync architecture & conflict resolution</div>
+        </div>
+
+        <div class="card card-clickable" data-nav-target="backup">
+          <div class="card-icon">💾</div>
+          <div class="card-title">Backup & Recovery</div>
+          <div class="card-desc">AES-256-GCM vault archives & SHA-256 checksums</div>
+        </div>
+
+        <div class="card card-clickable" data-nav-target="settings">
+          <div class="card-icon">⚙️</div>
+          <div class="card-title">Settings & Security</div>
+          <div class="card-desc">12-word recovery key, theme & database controls</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: AI ASSISTANT -->
+    <section id="section-assistant" class="section-view">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div>
+          <span style="font-weight:700; font-size:1.1rem;">Offline Local Intelligence</span>
+          <div style="font-size:0.75rem; color:var(--text-secondary-dark);">Zero Cloud API Calls • On-Device Search & Notes</div>
+        </div>
+        <button class="btn btn-secondary" id="btn-new-session" style="padding:4px 10px; font-size:0.75rem; min-height:32px;">+ New Session</button>
+      </div>
+
+      <!-- Chat Stream -->
+      <div class="card chat-window" id="chat-window"></div>
+
+      <!-- Quick Suggestion Chips -->
+      <div class="chips-row" style="margin-top:10px;">
+        <div class="chip" data-prompt="Remember my preferred language is TypeScript">Remember preference</div>
+        <div class="chip" data-prompt="Show system diagnostics">System diagnostics</div>
+        <div class="chip" data-prompt="Search indexed documents">Search documents</div>
+        <div class="chip" data-prompt="Check storage status">Storage status</div>
+      </div>
+
+      <!-- Message Composer -->
+      <div class="composer">
+        <input type="text" class="text-input" id="assistant-chat-input" placeholder="Ask, search, or 'remember that...'">
+        <button class="btn" id="btn-assistant-send">Send</button>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PERSONAL MEMORY -->
+    <section id="section-memory" class="section-view">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div>
+          <span style="font-weight:700; font-size:1.1rem;">Personal Memory</span>
+          <div style="font-size:0.75rem; color:var(--text-secondary-dark);" id="memory-count-badge">0 Encrypted Records</div>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <button class="btn btn-secondary" id="btn-export-memories" style="padding:4px 10px; font-size:0.75rem; min-height:32px;" title="Export JSON">Export</button>
+          <label class="btn btn-secondary" style="padding:4px 10px; font-size:0.75rem; min-height:32px; cursor:pointer;" title="Import JSON">
+            Import
+            <input type="file" id="import-memories-file" accept=".json" style="display:none;">
+          </label>
+          <button class="btn" id="btn-add-memory" style="padding:4px 12px; font-size:0.75rem; min-height:32px;">+ Add</button>
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <input type="text" class="text-input" id="memory-search-input" placeholder="Search memories, notes, tags..." style="width:100%; margin-bottom:10px;">
+
+      <!-- Category Chips -->
+      <div class="chips-row">
+        <div class="chip active" data-category="All">All</div>
+        <div class="chip" data-category="Preferences">Preferences</div>
+        <div class="chip" data-category="Work">Work</div>
+        <div class="chip" data-category="Personal">Personal</div>
+        <div class="chip" data-category="Health">Health</div>
+        <div class="chip" data-category="Ideas">Ideas</div>
+        <div class="chip" data-category="General">General</div>
+      </div>
+
+      <!-- Memory Items List -->
+      <div id="memories-list"></div>
+    </section>
+
+    <!-- SECTION 4: CONVERSATIONS -->
+    <section id="section-conversations" class="section-view">
+      <div style="margin-bottom:16px;">
+        <span style="font-weight:700; font-size:1.1rem;">Local Conversation Sessions</span>
+        <div style="font-size:0.75rem; color:var(--text-secondary-dark);">All chat history persists on this device in IndexedDB.</div>
+      </div>
+      <div id="conversations-list"></div>
+    </section>
+
+    <!-- SECTION 5: FILE MANAGER -->
+    <section id="section-files" class="section-view">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <div>
+          <span style="font-weight:700; font-size:1.1rem;">File Manager</span>
+          <div style="font-size:0.75rem; color:var(--text-secondary-dark);">Zero Broad Permissions • Local File Access</div>
+        </div>
+        <div>
+          <button class="btn" id="btn-pick-file">+ Import File</button>
+          <input type="file" id="file-picker-input" multiple style="display:none;">
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <input type="text" class="text-input" id="file-search-input" placeholder="Search indexed files & extracted text..." style="width:100%; margin-bottom:12px;">
+
+      <div id="documents-list"></div>
+    </section>
+
+    <!-- SECTION 6: KNOWLEDGE LIBRARY -->
+    <section id="section-knowledge" class="section-view">
+      <div style="margin-bottom:16px;">
+        <span style="font-weight:700; font-size:1.1rem;">Knowledge Library</span>
+        <div style="font-size:0.75rem; color:var(--text-secondary-dark);">Extracted text snippets from indexed files available for offline query.</div>
+      </div>
+      <div id="knowledge-list"></div>
+    </section>
+
+    <!-- SECTION 7: PHONE & WEB ACTIONS -->
+    <section id="section-phone" class="section-view">
+      <div style="margin-bottom:16px;">
+        <span style="font-weight:700; font-size:1.1rem;">Device & Web Telemetry</span>
+        <div style="font-size:0.75rem; color:var(--text-secondary-dark);">Real browser telemetry & platform capabilities.</div>
+      </div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <div style="font-weight:600; margin-bottom:10px;">Platform Diagnostics</div>
+        <div id="device-diagnostics-text" style="font-size:0.85rem; color:var(--text-secondary-dark); line-height:1.6;">
+          Loading telemetry...
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <div style="font-weight:600; margin-bottom:10px;">Browser Capabilities & Sandboxing</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary-dark); line-height:1.5;">
+          • <strong>Progressive Web App (PWA):</strong> Runs sandboxed in the browser engine without requiring root or broad OS storage permissions.<br>
+          • <strong>Hardware Telemetry:</strong> Uses standard W3C Battery, Storage Estimate, and Network Information APIs where permitted.<br>
+          • <strong>Host OS Settings:</strong> Web browsers cannot directly open host OS system settings for security reasons. You can manage site permissions in your browser's site settings.
+        </div>
+      </div>
+
+      <button class="btn" style="width:100%;" id="btn-share-telemetry">Share Diagnostics Report</button>
+    </section>
+
+    <!-- SECTION 8: GOOGLE DRIVE VAULT -->
+    <section id="section-vault" class="section-view">
+      <div style="margin-bottom:16px;">
+        <span style="font-weight:700; font-size:1.1rem;">Google Drive Vault</span>
+        <div style="font-size:0.75rem; color:var(--text-secondary-dark);">Dedicated Isolated Folder: ZEN_AI_VAULT</div>
+      </div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="status-dot dot-gray"></span>
+            <span style="font-weight:700;">Status: Not connected</span>
+          </div>
+          <span class="badge badge-disconnected">drive.file</span>
+        </div>
+        <div style="font-size:0.85rem; color:var(--text-secondary-dark); margin-top:8px; line-height:1.45;">
+          No active Google OAuth token. Backups currently remain local and encrypted on your device.
+        </div>
+        <button class="btn" style="width:100%; margin-top:14px;" onclick="alert(window.googleDriveVault.getSetupInstructions())">
+          Connect Google Drive Account
+        </button>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:600; margin-bottom:8px;">Vault Architecture & Conflict Resolution</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary-dark); line-height:1.5;">
+          • <strong>Scope:</strong> Uses <code>https://www.googleapis.com/auth/drive.file</code> so ZEN AI only accesses files it creates.<br>
+          • <strong>Zero-Knowledge:</strong> AES-256-GCM encryption occurs client-side before any upload.<br>
+          • <strong>Conflict Detection:</strong> Automatic differential timestamp comparison prevents accidental data overwrite across devices.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: BACKUP & RECOVERY -->
+    <section id="section-backup" class="section-view">
+      <div style="margin-bottom:16px;">
+        <span style="font-weight:700; font-size:1.1rem;">Backup & Recovery</span>
+        <div style="font-size:0.75rem; color:var(--text-secondary-dark);">AES-256-GCM Encrypted Archives • SHA-256 Verified</div>
+      </div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <div style="font-weight:600; margin-bottom:6px;">Create Encrypted Vault Backup</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary-dark); line-height:1.45; margin-bottom:12px;">
+          Exports all memories, conversations, and document indexes into an encrypted <code>.zenvault</code> bundle signed with a cryptographic SHA-256 hash.
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn" id="btn-run-backup-now" style="flex:1;">Run Backup Now</button>
+          <label class="btn btn-secondary" style="cursor:pointer;">
+            Restore Backup
+            <input type="file" id="restore-file-input" accept=".zenvault,.json" style="display:none;">
+          </label>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <div style="font-weight:600; margin-bottom:6px;">Backup History & Integrity Log</div>
+        <div id="backup-history-list"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: SETTINGS -->
+    <section id="section-settings" class="section-view">
+      <div style="margin-bottom:16px;">
+        <span style="font-weight:700; font-size:1.1rem;">Settings & Security</span>
+        <div style="font-size:0.75rem; color:var(--text-secondary-dark);">Web Crypto • Recovery Key • Privacy</div>
+      </div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <div style="font-weight:600; margin-bottom:8px;">Security Architecture</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary-dark); line-height:1.5;">
+          • <strong>Web Crypto API:</strong> Hardware-backed AES-256-GCM cipher with unique 12-byte random nonces per operation.<br>
+          • <strong>Zero-Knowledge:</strong> Private keys and passphrases are never stored in plain text or uploaded to external servers.<br>
+          • <strong>SHA-256:</strong> Cryptographic checksums verify that no data is tampered with during export or restore.
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <div style="font-weight:600; margin-bottom:6px;">12-Word Secure Recovery Key</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary-dark); line-height:1.45; margin-bottom:10px;">
+          In case of browser cache reset or device migration, this recovery mnemonic can derive your master decryption key.
+        </div>
+        <button class="btn btn-secondary" id="btn-generate-recovery-words">Generate 12-Word Recovery Key</button>
+        <div id="recovery-words-display"></div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:600; color:var(--status-rose); margin-bottom:6px;">Danger Zone</div>
+        <div style="font-size:0.85rem; color:var(--text-secondary-dark); margin-bottom:10px;">
+          Permanently delete all stored memories, conversations, and document indexes from this device.
+        </div>
+        <button class="btn btn-danger" id="btn-purge-database">Purge Local Database</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Edit/Add Memory Modal -->
+  <div class="modal-overlay" id="modal-memory">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-memory-title">New Personal Memory</h3>
+        <button class="icon-btn" data-close-modal>✕</button>
+      </div>
+      <input type="hidden" id="mem-form-id">
+      <div class="form-group">
+        <label class="form-label" for="mem-form-title">Title</label>
+        <input type="text" class="text-input" id="mem-form-title" placeholder="Note / Preference Title" style="width:100%;">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="mem-form-category">Category</label>
+        <select class="text-input" id="mem-form-category" style="width:100%;">
+          <option value="Preferences">Preferences</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Health">Health</option>
+          <option value="Ideas">Ideas</option>
+          <option value="General">General</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="mem-form-content">Content</label>
+        <textarea class="text-input" id="mem-form-content" rows="4" placeholder="Memory or note content..." style="width:100%;"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="mem-form-tags">Tags (comma separated)</label>
+        <input type="text" class="text-input" id="mem-form-tags" placeholder="e.g. coding, private" style="width:100%;">
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:16px;">
+        <button class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button class="btn" id="btn-save-memory">Save Memory</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="js/crypto.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/telemetry.js"></script>
+  <script src="js/drive.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    // Initialize Phone/Web Telemetry View on load
+    document.addEventListener('DOMContentLoaded', async () => {
+      const diagEl = document.getElementById('device-diagnostics-text');
+      const shareBtn = document.getElementById('btn-share-telemetry');
+      if (diagEl) {
+        const dev = TelemetryManager.getDeviceTelemetry();
+        const battery = await TelemetryManager.getBatteryTelemetry();
+        const storage = await TelemetryManager.getStorageTelemetry();
+        diagEl.innerHTML = `
+          • <strong>Platform:</strong> ${dev.platform}<br>
+          • <strong>PWA Standalone Mode:</strong> ${dev.isPWA ? 'Yes (Installed)' : 'Browser Tab'}<br>
+          • <strong>CPU Concurrency:</strong> ${dev.cpuCores} cores<br>
+          • <strong>Device RAM Estimate:</strong> ${dev.deviceMemory}<br>
+          • <strong>Battery:</strong> ${battery.supported ? `${battery.percentage}% ${battery.isCharging ? '(Charging)' : ''}` : 'Browser Restricted'}<br>
+          • <strong>Available Storage:</strong> ${storage.formattedAvailable} (${storage.formattedUsage} used)
+        `;
+
+        if (shareBtn) {
+          shareBtn.addEventListener('click', async () => {
+            const text = `ZEN AI Diagnostics Report:\nPlatform: ${dev.platform}\nPWA: ${dev.isPWA}\nStorage Available: ${storage.formattedAvailable}\nSecurity: Web Crypto AES-256-GCM Active`;
+            const shared = await TelemetryManager.shareReport("ZEN AI Diagnostics", text);
+            if (shared === false) {
+              window.showToast?.("Report copied to clipboard.");
+            }
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
